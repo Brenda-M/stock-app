@@ -68,6 +68,8 @@ export class DashboardComponent implements OnInit {
   }
 
   changeFilter() {
+    this.columns = []
+    this.displayData = []
     this.service.makeGetRequest(environment.base_url).subscribe(data => {
       this.lable = this.filterForm.get('filter').value
       for (let i = 0; i < data.dataset_data.data.length; i++) {
@@ -84,8 +86,33 @@ export class DashboardComponent implements OnInit {
     this.displayData.push(dataList[fieldIndex])
   }
 
-  search() {
+  search() { }
 
+  dateFilter() {
+    const startDate = new Date(this.range.get('start').value)
+    const endDate = new Date(this.range.get('end').value)
+
+    const paramStart = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`
+    const paramEnd = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}`
+
+    this.service.makeGetRequest(this.getFullDateUrl(startDate, endDate)).subscribe(data => {
+      console.log(data);
+
+      this.lable = `${paramStart} - ${paramEnd}`
+      if (data.dataset_data != undefined) {
+        if (data.dataset_data.data.length > 0) {
+          this.columns = []
+          this.displayData = []
+          console.log(data.dataset_data.data);
+
+          for (let i = 0; i < data.dataset_data.data.length; i++) {
+            this.getSpecificField(0, data.dataset_data.data[i])
+          }
+        }
+      }
+      console.log(this.displayData)
+      this.createChart()
+    })
   }
 
   createChart() {
@@ -93,13 +120,19 @@ export class DashboardComponent implements OnInit {
       type: 'line',
       data: {
         labels: [this.lable],
+        borderColor: "#000000",
         datasets: [{
           label: this.lable,
           fill: false,
           data: this.displayData,
-          borderWidth: 1
+          borderWidth: 1,
         }]
       },
     });
+  }
+
+  getFullDateUrl(start, end) {
+    return "https://data.nasdaq.com/api/v3/datasets/WIKI/FB.json?column_index=4&start_date=" + start
+      + "&end_date=" + end + "&api_key=yitiMVJsyFcsFoR-tkp1"
   }
 }

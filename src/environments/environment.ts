@@ -5,7 +5,8 @@
 export const environment = {
     production: false,
     base_url: "https://data.nasdaq.com/api/v3/datasets/WIKI/FB/data.json?api_key=yitiMVJsyFcsFoR-tkp1",
-    apiKey: "yitiMVJsyFcsFoR-tkp1"
+    apiKey: "yitiMVJsyFcsFoR-tkp1",
+
 };
 
 /*
