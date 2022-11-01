@@ -1,0 +1,68 @@
+.cont {
+  width: 100%;
+}
+
+.title {
+  margin: 1rem auto auto 1rem;
+  color: #51459e;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.sidebar {
+  background: #f7f8fd;
+  transition: all 0.5s ease;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  width: 15%;
+  height: 100vh;
+  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+}
+
+.search-box {
+  width: 10rem;
+  margin: 1rem auto auto 1rem;
+  border: solid 1px #fff;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.sidebar-items {
+  height: 90vh;
+  background: #fff;
+  margin: 1rem 1rem auto 1rem;
+  border-radius: 4px;
+}
+
+#second {
+  margin-left: 13rem;
+  width: 83%;
+}
+
+.text-title {
+  color: #51459e;
+  font-weight: 500;
+  font-size: larger;
+  margin: 2rem auto auto 3rem;
+}
+
+.date-picker {
+  margin: 1rem auto auto 12.5rem;
+}
+
+.chart-body {
+  margin: 1rem;
+  align-items: center;
+  border: solid #2f3e46 1px;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.select-box {
+  margin: 2rem auto 1rem 2rem;
+}
+
+.divChart {
+  margin: auto auto auto 2rem;
+}

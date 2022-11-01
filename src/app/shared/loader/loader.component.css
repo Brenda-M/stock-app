@@ -1,0 +1,9 @@
+img {
+     display: block;
+      margin-left: 9rem;
+      margin-right: 9rem;
+      border-radius: 50%;
+  }
+  .lds-ellipsis {
+    text-align: center;
+}

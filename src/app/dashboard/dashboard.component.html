@@ -1,0 +1,79 @@
+<div class="cont">
+    <div id="first">
+        <div class="sidebar">
+            <div class="title">
+                <br>
+                Nasdaq
+            </div>
+            <form [formGroup]="searchform" (ngSubmit)="search()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Type here to search"
+                        formControlName="searchTerm" class="search-box">
+                </div>
+
+                <div class="form-group">
+                    <app-loader *ngIf="isLoading == true"></app-loader>
+                    <button type="submit" class="btn btn-primary" *ngIf="isLoading == false">Submit</button>
+                </div>
+            </form>
+
+            <div class="sidebar-items">
+            </div>
+        </div>
+    </div>
+
+    <div id="second">
+        <div class="row">
+            <div class="row">
+                <div class="text-title">
+                    SVSTR
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-3">
+                <div class="date-picker">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate placeholder="Start date">
+                            <input matEndDate placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+
+                        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid
+                            start date</mat-error>
+                        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end
+                            date</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-body">
+            <div class="row">
+                <form [formGroup]="filterForm" (ngSubmit)="changeFilter()" class="select-box">
+                    <div class="d-grid">
+                        <select class="custom-select mb-3" formControlName="filter">
+                            <option value="">Choose Filter</option>
+                            <option *ngFor="let column of columns" [ngValue]="column">
+                                {{ column }}
+                            </option>
+                        </select>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+                <br>
+            </div>
+            <div class="row">
+                <div id="divChart">
+                    <canvas id="chart" height="450" width="1000" class="divChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
